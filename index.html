@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>💘 Nosso Cantinho</title>
+
+  <!-- PWA básico -->
+  <link rel="apple-touch-icon" href="fotos/01.jpg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <style>
+    body {
+      margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+      background:linear-gradient(180deg,#0f0f14,#1b1b24);
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .card {
+      width:100%;
+      max-width:420px;
+      background:#1f1f2b;
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 20px 40px rgba(0,0,0,.4);
+      text-align:center;
+    }
+    button {
+      width:100%;
+      padding:16px;
+      font-size:18px;
+      border:0;
+      border-radius:16px;
+      background:#ff4d6d;
+      color:#fff;
+      font-weight:600;
+      cursor:pointer;
+    }
+    img {
+      width:100%;
+      margin-top:16px;
+      border-radius:16px;
+      display:none;
+    }
+    .data, .frase {
+      margin-top:10px;
+      font-size:15px;
+      opacity:.95;
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>👀 aperta aqui</h2>
+    <button id="btn">✨ puxar uma lembrança ✨</button>
+
+    <img id="foto" />
+    <div class="data" id="data"></div>
+    <div class="frase" id="frase"></div>
+  </div>
+
+  <script>
+    const album = [
+      { arquivo: "fotos/01.jpg", data: "21/02/2023", frase: "onde tudo começou 💘" },
+      { arquivo: "fotos/02.jpg", data: "03/09/2023", frase: "esse dia foi tudo" },
+      { arquivo: "fotos/03.jpg", data: "21/01/2024", frase: "te escolheria de novo" }
+    ];
+
+    const btn = document.getElementById("btn");
+    const img = document.getElementById("foto");
+    const dataEl = document.getElementById("data");
+    const fraseEl = document.getElementById("frase");
+
+    btn.onclick = () => {
+      const item = album[Math.floor(Math.random() * album.length)];
+      img.src = item.arquivo + "?v=" + Date.now();
+      img.style.display = "block";
+
+      dataEl.textContent = "📅 " + item.data;
+      dataEl.style.display = "block";
+
+      fraseEl.textContent = "💬 " + item.frase;
+      fraseEl.style.display = "block";
+    };
+  </script>
+</body>
+</html>
